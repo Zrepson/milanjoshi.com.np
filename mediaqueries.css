@@ -69,11 +69,11 @@
     flex-wrap: wrap;
   }
   .contact-info-container {
-    margin: 0;
+    margin: 10px 50px 20px ;
   }
   .contact-info-container p,
   .nav-links li a {
-    font-size: 1rem;
+    font-size: smaller;
   }
   .experience-sub-title {
     font-size: 1.25rem;
