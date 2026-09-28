@@ -1,8 +1,13 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import { ArrowDownRight, ArrowUpRight, Mail } from 'lucide-react'
-import { WelcomeScene } from '@/components/welcome-scene'
+
+const WelcomeScene = dynamic(
+  () => import('@/components/welcome-scene').then((module) => module.WelcomeScene),
+  { ssr: false, loading: () => null },
+)
 
 const links = [
   { label: 'About', href: '#about' },
