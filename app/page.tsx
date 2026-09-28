@@ -1,113 +1,54 @@
-import Image from 'next/image';
+'use client'
+
+import { useState } from 'react'
+import { ArrowDownRight, ArrowUpRight, Mail } from 'lucide-react'
+import { WelcomeScene } from '@/components/welcome-scene'
+
+const links = [
+  { label: 'About', href: '#about' },
+  { label: 'Work', href: '#work' },
+  { label: 'Contact', href: '#contact' },
+]
 
 export default function Home() {
+  const [isExploring, setIsExploring] = useState(false)
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main className="relative min-h-screen overflow-hidden bg-[#050b1d] text-white">
+      <WelcomeScene />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_48%,rgba(39,122,235,0.17),transparent_28%),linear-gradient(90deg,rgba(5,11,29,0.96)_0%,rgba(5,11,29,0.75)_37%,rgba(5,11,29,0.05)_78%)]" />
+
+      <nav className="relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-7 sm:px-10 lg:px-16" aria-label="Primary navigation">
+        <a href="#top" className="group flex items-center gap-3" aria-label="Milan Joshi home">
+          <span className="flex size-9 items-center justify-center rounded-full border border-white/30 bg-white/10 text-sm font-semibold tracking-tight backdrop-blur-sm">MJ</span>
+          <span className="hidden text-sm font-medium tracking-[0.22em] text-white/75 sm:inline">MILAN JOSHI</span>
+        </a>
+        <div className="flex items-center gap-6 text-xs font-medium uppercase tracking-[0.18em] text-white/55 sm:gap-9">
+          {links.map((link) => <a key={link.label} href={link.href} className="transition-colors hover:text-white">{link.label}</a>)}
         </div>
-      </div>
+      </nav>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      <section id="top" className="relative z-10 mx-auto flex min-h-[calc(100vh-92px)] w-full max-w-7xl items-center px-6 pb-20 pt-8 sm:px-10 lg:px-16">
+        <div className="max-w-xl">
+          <p className="mb-7 flex items-center gap-3 text-xs font-medium uppercase tracking-[0.3em] text-sky-200/75"><span className="size-1.5 rounded-full bg-sky-300 shadow-[0_0_18px_5px_rgba(125,211,252,0.55)]" /> Independent designer &amp; developer</p>
+          <h1 className="max-w-[680px] text-5xl font-semibold leading-[0.95] tracking-[-0.055em] text-white sm:text-7xl lg:text-[6.7rem]">Hello,<br /><span className="text-sky-200">I&apos;m Milan.</span></h1>
+          <p className="mt-8 max-w-md text-base leading-7 text-white/60 sm:text-lg">I build thoughtful digital experiences where clear ideas meet curious technology. Welcome to my little corner of the internet.</p>
+          <div className="mt-10 flex flex-wrap items-center gap-4">
+            <a href="#work" onClick={() => setIsExploring(true)} className="group inline-flex items-center gap-3 rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#071126] transition-transform hover:-translate-y-0.5">Explore my work <ArrowDownRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5" /></a>
+            <a href="mailto:hello@milanjoshi.com.np" className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm text-white/75 transition-colors hover:border-white/50 hover:text-white"><Mail className="size-4" /> Say hello</a>
+          </div>
+          <div className="mt-16 flex items-center gap-5 text-sm text-white/40">
+            <span className="h-px w-10 bg-white/25" />
+            <span>{isExploring ? 'Let&apos;s make something memorable.' : 'Scroll to begin the journey'}</span>
+          </div>
+        </div>
+        <div className="absolute bottom-9 right-6 hidden items-center gap-4 text-[10px] uppercase tracking-[0.24em] text-white/35 lg:flex"><span>Explore the planet</span><ArrowUpRight className="size-4" /></div>
+      </section>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      <section id="about" className="sr-only"><h2>About Milan Joshi</h2><p>Milan Joshi is an independent designer and developer creating thoughtful digital experiences.</p></section>
+      <section id="work" className="sr-only"><h2>Selected work</h2></section>
+      <section id="contact" className="sr-only"><h2>Contact Milan Joshi</h2><a href="mailto:hello@milanjoshi.com.np">Email Milan Joshi</a></section>
+      <div className="absolute bottom-7 left-6 z-10 flex gap-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/40 sm:left-10 lg:left-16"><a href="https://github.com" aria-label="GitHub" className="transition-colors hover:text-white">GH</a><a href="https://linkedin.com" aria-label="LinkedIn" className="transition-colors hover:text-white">IN</a></div>
     </main>
-  );
+  )
 }
